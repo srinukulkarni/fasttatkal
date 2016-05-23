@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Fill Irctc Form</title>
+  <link rel="stylesheet" href="jcss1.css">
+  <script src="jjs.js"></script>
+  <script src="jjsn.js"></script>
+  <script src="trains.js"></script>
+  <script src="station.js"></script>
+  <script src="jq.js"></script>
+  
+  <script src="crossreq.js"></script>
+  
+  <link rel="stylesheet" href="jcss.css">
+  <style>
+  body{
+   min-width:640px; /* suppose you want minimun width of 1000px */
+   width: auto !important;  /* Firefox will set width as auto */
+   width:1020px;             /* As IE ignores !important it will set width as 1000px; */
+}
+
+#cancel{
+display:none;
+}
+.infofilldiv{
+display:none;
+}
+  .inline{
+  display:inline-block;
+  width:50%
+   
+  }
+  u{
+  color:red;}
+  li u{
+ 
+  color:blue;
+  }
+p.one {
+    border-style: solid;
+    border-width: 5px;
+}
+
+p.two {
+    border-style: solid;
+    border-width: medium;
+	
+	background-color:lightgrey;
+}
+
+ div.three{
+    border-style: solid;
+    border-width: 1px;
+
+	background-color:#006020;
+	
+	
+}
+
+.animaion{
+
+}
+form{
+ border-style: solid;
+    border-width: 1px;
+    
+background-color:#F8F8F8;
+border-color: white;
+}
+.zeronine{
+
+background-color: #CC9900;
+}
+
+h1{
+color:white;
+background-color:#006020;
+}
+.newh1{
+color:blue;
+}
+h2{
+color:blue;}
+.mydiv{
+display: none;
+}
+.myidiv{
+display: block;
+}
+.infodiv{
+display: none;
+}
+.newh2{
+color:black;
+}
+.mytable
+{
+border: 1px solid black;
+    border-collapse: collapse;
+	font-family: "Times New Roman", Times, serif;
+	font-size: 150%;
+}
+.mytable th{
+border: 1px solid black;
+    border-collapse: collapse;
+}
+.mytable td{
+border: 1px solid black;
+    border-collapse: collapse;
+}
+#mainblock{
+width:1020px;
+    margin: auto;
+
+}
+.instruction{
+width:1020px;
+    margin: auto;
+
+}
+.welcome{
+width:1020px;
+    margin: auto;
+	display:none;
+}
+#pin{
+
+display:none;
+}
+
+</style>
+  
+  
+</head>
+<body background="zeronine1.jpg" >
+
+
+<h2 align="center" ><font align="left" color="yellow" size="30">ZeroNine.in</font></h2>
+<hr>
+<br>
+<br>
+
+<div class="welcome">
+<div  class="three" >
+<h1 align="center" >Welcome To Zeronine Fast Tatkal</h1>
+</div>
+
+</div>
+<div class="instruction">
+<div  class="three" >
+<h1 align="center" >Instruction</h1>
+<form>
+<font size="3" color="blue">
+<ul >
+<li>This application is secured.</li>
+<li><u>Your all details are saved in browser not on internet server.</u></li>
+<li>If you want to uninterrupted booking please fill every detail carefully.</li>
+<li>If ticket is not available do not use this application</li>
+<li>This application is best suitable for ticket opening dates.</li>
+<li><u>Start booking only before 59 Sec from opening time for best results (For Example 3A Tatkal opens at 10 AM then start booking at 9:59 AM).</u></li>
+<li>If you face any problem please mail on ankur.ankurmishra.mishra@gmail.com</li>
+<li ><u><font color="red" id="vs"> </font></u></li>
+
+<ul>
+</font>
+</form>
+</div>
+<div  class="three" >
+<h1 align="center" >Updates</h1>
+<form>
+
+</font>
+<h2  style="color:red" align="center" id='st'></h2>
+</form>
+</div>
+</div>
+<div id="add1"></div>
+<div id="mainblock" align="left">
+<div class="infofilldiv">
+<div  class="three" >
+<h1 align="center" >Saved Journey Detail</h1>
+<div id="add2"></div>
+<form>
+<br>
+<br>
+<table align="center" style="width:50%" class="mytable" >
+<tr><th>Username</th><td id="usr"></td></tr>
+<tr><th>Journey Date</th><td id="jd"></td></tr>
+<tr><th>From</th><td id="f"></td></tr>
+<tr><th>To</th><td id="t"></td></tr>
+<tr><th>Quota</th><td id="q"></td></tr>
+<tr><th>Class</th><td id="c"></td></tr>
+<tr><th>Train No</th><td id="tn"></td></tr>
+<tr><th>Mobile No</th><td id="umn"></td></tr>
+</table>
+<br>
+<br>
+<table align="center" style="width:100%"  id="bb" >
+<tr><td align="center"><input type="button" value="Start Booking" id="sb"></input></td><td align="center"><input type="button" value="Delete Detail" id="del"></input></td><td align="center"><input type="button" id="cd" value="Change Detail"></input></td></tr>
+</table>
+<br>
+<br>
+<h2 id="sharen" style="color:red" align="center"></h2>
+<h2 id="nc1" style="color:red" align="center"></h2>
+</form>
+
+</div>
+
+</div>
+<div class="infodiv">
+<div  class="three" >
+<h1 id="demo">Login and Journey Detail:</h1>
+<br>
+
+<form  >
+<h2 align="center" color="Blue">Irctc Login and Password</h2>
+<hr>
+<table align="center" id="logdetail">
+<tr><td><font size="3" >Username:</font></td></tr>
+<tr><td><input type="text" name="usermane" autocomplete="off" id="usn"></td></tr>
+<tr><td><font size="3">Password:</font></td></tr>
+<tr><td><input type="password" name="password" id="usp"></td></tr>
+</table>
+<div id="add3"></div>
+<h2 align="center" color="Blue">Journey Detail</h2>
+<hr>
+<table align="center" id="jdetail">
+<tr><td><font size="3" >From:</font></td></tr>
+<tr><td><input id="tags"></td></tr>
+<tr><td><font size="3">To:</font></td></tr>
+<tr><td><input id="tags1"></td></tr>
+<tr><td><font size="3">Journey Date:</font></td></tr>
+<tr><td><input type="text" id="datepicker" autocomplete="off"></td></tr>
+<tr><td><font size="3">Train No.</font></td></tr>
+<tr><td><input id="trains"></td></tr>
+
+</table>
+
+<h2 id="wrong" style="color:red" align="center"></h2>
+<h2 id="status" style="color:green" align="center"></h2>
+<h2 align="center" color="Blue">Ticket Type,Quota,Class</h2>
+<hr>
+<table align="center" id="ticketquota">
+<tr><td><font size="3">Ticket Type:</font></td><td align="center"><font size="3">Quota:</font><td><font size="3">Select Class:</font></td></td></tr>
+<tr><td align="center"><select><option value="E-ticket">E-Ticket</option>
+  <option value="i-ticket">I-Ticket</option></select></td><td align="center"><select id="qu"><option value="GN">General</option>
+  <option value="CK">Tatkal</option><option value="PT">Premium Tatkal</option><option value="HP">Physical Handicap</option><option value="LD">Ladies</option></select></td><td align="center"><select id="cla"><option value="SL">Sleeper</option>
+
+  <option value="3A">3A</option>
+  <option value="2A">2A</option>
+  <option value="1A">1A</option>
+  <option value="2S">2S</option>
+  <option value="CC">CC</option>
+  <option value="EC">EC</option>
+</select></td></tr>
+  
+</table>
+
+  <table align="center">
+  <tr><td align="center"><br><input type="button"  value="Verify journey details" id="but" ></input></td><td align="center" ></td></tr>
+  </table>
+<div id="verify" align="center"></div>
+<p  style="color:#ff6533; font-family: courier;
+    font-size: 140%;" align="center" id="hi">If boarding station is different from "From Station"? then <a style="cursor:pointer;color:blue;" id="boa">Click Here.</a></p>
+<div align="center" style="display:none" id='bo'>
+<h2 align="center" color="Blue">Select Boarding Station</h2>
+<hr>
+<input id="board">
+<p  style="color:red; font-family: courier;
+    font-size: 110%;" align="center" >Please read note! <a style="cursor:pointer;color:blue;" id="note">click here</a></p>
+<p  style="color:red; font-family: courier;
+    font-size: 110%;" align="center" >Not mandatory</P>
+</div>
+<br><br>
+
+</form>
+
+</div>
+<br>
+
+<div class="three" id="pafy">
+
+<h1>Passengers Detail:</h1>
+<form>
+
+<h2 align="center" color="Blue">Passenger Above Five Years</h2>
+<hr>
+<h2 id="wrongn" style="color:red" align="center"></h2>
+<h2 align="center">By default meal option is veg.</h2>
+<table align="center" id="pd">
+<tr><th><font size="3" >S.NO.</font></th>
+<th><font size="3" >Name</font></th>
+<th><font size="3" >Age</font></th>
+<th><font size="3" >Gender</font></th>
+<th><font size="3" >Bearth Preference</font></th>
+<th><font size="3" >Senior Citizen</font></th>
+<th><font size="3" >Meal</font></th>
+</tr>
+<tr id="passenger1"><td><font size="2" >1</font></td>
+<td><input type="text" maxlength="16" size="16" id="first"></input></td>
+<td><input type="text" maxlength="3" size="3" id="second"></input></td>
+<td align="center">
+<select>
+  <option value="M">Male</option>
+  <option value="F">Female</option>
+  
+</select>
+</td>
+<td align="center" id="third">
+<select>
+  <option value=" ">No Preference</option>
+  <option value="LB">Lower</option>
+  <option value="MB">Middle</option>
+  <option value="UB">Upper</option>
+  <option value="SL">Side Lower</option>
+  <option value="SU">Side Upper</option>
+</select>
+</td>
+<td align="center" >
+<input type="checkbox"   >
+</td>
+<td><font size="3" >Veg</font></td>
+</tr>
+<tr id="passenger2"><td><font size="2" >2</font></td>
+<td><input type="text" maxlength="16" size="16"></input></td>
+<td><input type="text" maxlength="3" size="3"></input></td>
+<td align="center">
+<select>
+  <option value="M">Male</option>
+  <option value="F">Female</option>
+  
+</select>
+</td>
+<td align="center">
+<select>
+  <option value=" ">No Preference</option>
+  <option value="LB">Lower</option>
+  <option value="MB">Middle</option>
+  <option value="UB">Upper</option>
+  <option value="SL">Side Lower</option>
+  <option value="SU">Side Upper</option>
+</select>
+</td>
+<td align="center">
+<input type="checkbox"   >
+</td>
+<td><font size="3" >Veg</font></td> 
+</tr>
+<tr id="passenger3"><td><font size="2" >3</font></td>
+<td><input type="text" maxlength="16" size="16"></input></td>
+<td><input type="text" maxlength="3" size="3"></input></td>
+<td align="center">
+<select>
+  <option value="M">Male</option>
+  <option value="F">Female</option>
+  
+</select>
+</td>
+<td align="center">
+<select>
+  <option value=" ">No Preference</option>
+  <option value="LB">Lower</option>
+  <option value="MB">Middle</option>
+  <option value="UB">Upper</option>
+  <option value="SL">Side Lower</option>
+  <option value="SU">Side Upper</option>
+</select>
+</td>
+<td align="center">
+<input type="checkbox"   >
+</td>
+<td><font size="3" >Veg</font></td>
+</tr>
+<tr id="passenger4"><td><font size="2" >4</font></td>
+<td><input type="text" maxlength="16" size="16"></input></td>
+<td><input type="text" maxlength="3" size="3"></input></td>
+<td align="center">
+<select>
+  <option value="M">Male</option>
+  <option value="F">Female</option>
+  
+</select>
+</td>
+<td align="center">
+<select>
+  <option value=" ">No Preference</option>
+  <option value="LB">Lower</option>
+  <option value="MB">Middle</option>
+  <option value="UB">Upper</option>
+  <option value="SL">Side Lower</option>
+  <option value="SU">Side Upper</option>
+</select>
+</td>
+<td align="center">
+<input type="checkbox"   >
+</td>
+<td><font size="3" >Veg</font></td>
+</tr>
+<tr id="passenger5"><td><font size="2" >5</font></td>
+<td><input type="text" maxlength="16" size="16"></input></td>
+<td><input type="text" maxlength="3" size="3"></input></td>
+<td align="center">
+<select>
+  <option value="M">Male</option>
+  <option value="F">Female</option>
+  
+</select>
+</td>
+<td align="center">
+<select>
+  <option value=" ">No Preference</option>
+  <option value="LB">Lower</option>
+  <option value="MB">Middle</option>
+  <option value="UB">Upper</option>
+  <option value="SL">Side Lower</option>
+  <option value="SU">Side Upper</option>
+</select>
+
+</td>
+<td align="center">
+<input type="checkbox"   >
+</td>
+<td><font size="3" >Veg</font></td>
+</tr>
+<tr id="passenger6"><td><font size="2" >6</font></td>
+<td><input type="text" maxlength="16" size="16"></input></td>
+<td><input type="text" maxlength="3" size="3"></input></td>
+<td align="center">
+<select>
+  <option value="M">Male</option>
+  <option value="F">Female</option>
+  
+</select>
+</td>
+<td align="center">
+<select>
+  <option value=" ">No Preference</option>
+  <option value="LB">Lower</option>
+  <option value="MB">Middle</option>
+  <option value="UB">Upper</option>
+  <option value="SL">Side Lower</option>
+  <option value="SU">Side Upper</option>
+</select>
+</td>
+<td align="center">
+<input type="checkbox"   >
+</td>
+<td><font size="3" >Veg</font></td>
+</tr>
+</table>
+
+<div id="add4"></div>
+<h2 align="center" color="Blue">Children Below Five Years</h2>
+<hr>
+<h2 id="childerror" style="color:red" align="center"></h2>
+<table align="center" id="cbfy">
+<tr><th><font size="3" >S.NO.</font></th>
+<th><font size="3" >Name</font></th>
+<th><font size="3" >Age</font></th>
+<th><font size="3" >Gender</font></th>
+</tr>
+<tr id="child1" ><td><font size="2" >1</font></td>
+<td><input type="text" maxlength="16" size="16"></input></td>
+<td align="center">
+<select>
+  <option value="-1">Select</option>
+  <option value="0">Below one year</option>
+   <option value="1">One years</option>
+  <option value="2">Two years</option>
+   <option value="3">Three years</option>
+  <option value="4">Four years</option>
+  
+</select>
+</td>
+<td align="center">
+<select>
+ 
+  <option value="M">Male</option>
+  <option value="F">Female</option>
+  
+</select>
+</td></tr>
+<tr id="child2"><td><font size="2" >2</font></td>
+<td><input type="text" maxlength="16" size="16"></input></td>
+<td align="center">
+<select>
+  <option value="-1">Select</option>
+  <option value="0">Below one year</option>
+   <option value="1">One years</option>
+  <option value="2">Two years</option>
+   <option value="3">Three years</option>
+  <option value="4">Four years</option>
+  
+</select>
+</td>
+<td align="center">
+<select>
+  
+  <option value="M">Male</option>
+  <option value="F">Female</option>
+  
+</select>
+</td></tr>
+</table>
+<div id="add5"></div>
+<br>
+<br>
+<div id="add6"></div>
+<div align="center" id="mobno">
+<input type="checkbox" id="au"><font size="3" >Considar Auto Upgradation</font><br>
+<input type="checkbox" id="boc"><font size="3" >Book only if confirm berths are alloted</font><br>
+
+<h2 align="center">Mobile No.<h2>
+<hr>
+<input type="text" maxlength="16" id="mono"></input>
+
+</div>
+
+<div id="add7"></div>
+<br>
+<br>
+<div id="add8"></div>
+</form>
+</div>
+<br>
+<div class="three" id="paymentd">
+<h1>Payment Detail:</h1>
+
+<form >
+
+<div align="center" id="payoption">
+<h2 align="center">Select Payment Options<h2>
+<hr>
+<h2 id="nopay" style="color:red" align="center"></h2>
+<select align="center"  id="payopt">
+<option value="select">Select</option>
+ <option value="NETBANKING">Net Banking</option>
+  <option value="CREDIT_CARD">Payment Gateway / Credit Card</option>
+  <option value="DEBIT_CARD">Debit Card</option>
+  <option value="CASH_CARD">Cash Card / Wallets</option>
+  <option value="IRCTC_PREPAID">IRCTC Prepaid</option>
+  <option value="EMI">EMI</option>
+</select>
+
+</div>
+<div align="center" class="mydiv" id="NETBANKING">
+<h2 align="center">Net Banking-Select Your Bank</h2>
+<hr>
+<br>
+<br>
+<select align="center" id="rise">
+																<option value="1">State Bank of India</option>
+																<option value="10">State Bank of India and Associates</option>
+																<option value="22">Federal Bank</option>
+																<option value="29">Indian Bank</option>
+																<option value="28">Union Bank of India</option>
+																<option value="31">Andhra Bank</option>
+																<option value="34">Punjab National Bank </option>
+																<option value="35">Allahabad Bank</option>
+																<option value="38">Vijaya Bank</option>
+																<option value="39">AXIS Bank</option>
+																<option value="36">HDFC Bank</option>
+																<option value="37">Bank of Baroda</option>
+																<option value="42">Karnataka Bank</option>
+																<option value="40">Karur Vysya Bank</option>
+																<option value="46">Kotak Mahindra Bank</option>
+																<option value="47">INGVysya Bank</option>
+																<option value="44">ICICI Bank </option>
+																<option value="45">IndusInd Bank</option>
+																<option value="51">IMPS</option>
+																<option value="50">Central Bank of India</option>
+																<option value="48">Bank of India</option>
+																<option value="54">Syndicate Bank</option>
+																<option value="53">Bank of Maharashatra</option>
+																<option value="52">IDBI Bank</option>
+																<option value="56">Corporation Bank</option>
+</select>
+<div align="center" class="mydiv" id="imdetail">
+<h2 align="center">
+<p style="color:black" >MMID(for Imps)<br><input type="text" id="imuser"></input></p>
+<p style="color:black" >Mobile No(for Imps)<br><input type="text" id="impass"></input></p>
+<p style="color:black" >OTP(for Imps)<br><input type="text" id="imotp"></input></p>
+</h2></div>
+<div align="center" class="myidiv" id="idetail">
+<h2 align="center">
+
+<p style="color:black" >Username<br><input type="text" id="iuser"><br><br>Password<br><input type="password" id="ipass"></input></p>
+</h2></div><br>
+</div>
+<div align="center" class="mydiv" id="CREDIT_CARD" >
+<h2 align="center">Payment Gateway / Credit Card-Select Your Bank</h2>
+<hr>
+<br>
+<br>
+
+<select align="center">
+<option value="4">Visa/Master Card(Powered By ICICI BANK)</option>
+																<option value="17">Visa/Master Card(Powered By CITI BANK)</option>
+																<option value="21">Visa/Master Card(Powered By HDFC BANK)</option>
+																<option value="27">American Express</option>
+																<option value="30">Visa/Master Card(Powered By AXIS BANK)</option>
+																<option value="58">RuPay Card (Powered by Kotak Bank)</option>
+</select><div align="center" id="cdetail">
+<h2 align="center"><h2>
+<p style="color:black" >This detail works on only first three credit card payment methods</p>
+<p style="color:black" >Card Type<br><select id="ctype" >
+      <option value="VISA">Visa</option><option value="MC">Master Card</option></select></p>
+<p style="color:black">Name on card<br><input id="cname-on-card" type="text"></input></p>
+<p style="color:black">Card No.<br><input id="credit-card-number" type="text"></p>
+<p style="color:black">Expiry date<br>
+<select id="cexpiration-month" >
+   <option value=" ">mm</option><option value="01">01</option><option value="02">02</option><option value="03">03</option><option value="04">04</option><option value="05">05</option><option value="06">06</option><option value="07">07</option><option value="08">08</option><option value="09">09</option><option value="10">10</option><option value="11">11</option><option value="12">12</option></select>
+<select id="cexpiration-year" aria-labelledby="creditCardExpirationLabel">
+  <option value=" ">yyyy</option>    <option value="2015">2015</option><option value="2016">2016</option><option value="2017">2017</option><option value="2018">2018</option><option value="2019">2019</option><option value="2020">2020</option><option value="2021">2021</option><option value="2022">2022</option><option value="2023">2023</option><option value="2024">2024</option><option value="2015">2025</option><option value="2016">2026</option><option value="2017">2027</option><option value="2018">2028</option><option value="2019">2029</option><option value="2020">2030</option><option value="2021">2031</option><option value="2022">2032</option><option value="2023">2033</option><option value="2024">2034</option><option value="2015">2035</option><option value="2016">2036</option><option value="2017">2037</option><option value="2018">2038</option><option value="2019">2039</option><option value="2020">2040</option><option value="2021">2041</option><option value="2022">2042</option><option value="2023">2043</option><option value="2024">2044</option><option value="2015">2045</option><option value="2016">2046</option><option value="2017">2047</option><option value="2018">2048</option><option value="2019">2049</option><option value="2020">2050</option><option value="2021">2051</option><option value="2022">2052</option><option value="2023">2053</option><option value="2024">2054</option><option value="2015">2055</option><option value="2016">2056</option><option value="2017">2057</option><option value="2018">2058</option><option value="2019">2059</option><option value="2020">2060</option><option value="2021">2061</option><option value="2022">2062</option><option value="2023">2063</option><option value="2024">2064</option></select>
+</p>
+<p style="color:red" >We will not tell you to fill it very sensitive information.You should fill it manually on bank page not here.<br>
+</p>
+<p style="color:black" >Cvv<br><input type="password" id="ccvv"></input></p>
+<p style="color:black" id="pin">Pin<br><input type="password" id="cpin"></input></p>
+	  </div><br>
+</div>
+
+<div align="center" class="mydiv"  id="DEBIT_CARD">
+<h2 align="center">Debit Card-Select Your Bank</h2>
+<hr>
+<br>
+<br>
+<select align="center">
+																<option value="3">State Bank of India</option>
+																<option value="9">Punjab National Bank</option>
+																<option value="15">Indian Bank</option>
+																<option value="16">Union Bank of India </option>
+																<option value="19">Bank of India</option>
+																<option value="25">Andhra Bank</option>
+																<option value="26">Canara Bank</option>
+																<option value="32">CITI Bank</option>
+																<option value="41">ICICI Bank</option>
+																<option value="57">HDFC Bank</option>
+																<option value="66">AXIS Bank</option>
+</select><div align="center" id="ddetail">
+<h2>
+<p style="color:black" >Card Type<br><select id="dtype" display="none" >
+      <option value="VISA|1">Visa</option><option value="MC|1">Master Card</option><option value="RP">Rupay Card</option></select></p>
+<p style="color:black" >Name on card<br><input id="dname-on-card" type="text"></input></p>
+<p style="color:black">Card No.<br><input id="dcredit-card-number" type="text"></p>
+<p style="color:black">Expiry date<br>
+<select id="dexpiration-month" >
+   <option value=" ">mm</option>   <option value="01">01</option><option value="02">02</option><option value="03">03</option><option value="04">04</option><option value="05">05</option><option value="06">06</option><option value="07">07</option><option value="08">08</option><option value="09">09</option><option value="10">10</option><option value="11">11</option><option value="12">12</option></select>
+<select id="dexpiration-year" aria-labelledby="creditCardExpirationLabel">
+      <option value=" ">yyyy</option> <option value="2015">2015</option><option value="2016">2016</option><option value="2017">2017</option><option value="2018">2018</option><option value="2019">2019</option><option value="2020">2020</option><option value="2021">2021</option><option value="2022">2022</option><option value="2023">2023</option><option value="2024">2024</option><option value="2015">2025</option><option value="2016">2026</option><option value="2017">2027</option><option value="2018">2028</option><option value="2019">2029</option><option value="2020">2030</option><option value="2021">2031</option><option value="2022">2032</option><option value="2023">2033</option><option value="2024">2034</option><option value="2015">2035</option><option value="2016">2036</option><option value="2017">2037</option><option value="2018">2038</option><option value="2019">2039</option><option value="2020">2040</option><option value="2021">2041</option><option value="2022">2042</option><option value="2023">2043</option><option value="2024">2044</option><option value="2015">2045</option><option value="2016">2046</option><option value="2017">2047</option><option value="2018">2048</option><option value="2019">2049</option><option value="2020">2050</option><option value="2021">2051</option><option value="2022">2052</option><option value="2023">2053</option><option value="2024">2054</option><option value="2015">2055</option><option value="2016">2056</option><option value="2017">2057</option><option value="2018">2058</option><option value="2019">2059</option><option value="2020">2060</option><option value="2021">2061</option><option value="2022">2062</option><option value="2023">2063</option><option value="2024">2064</option></select>
+</p>
+<p style="color:red" >We will not tell you to fill it very sensitive information.You should fill it manually on bank page not here.</p>
+<p style="color:black" >Cvv<br><input type="password" id="dcvv"></input></p>
+<p style="color:black" >Pin<br><input type="password" id="dpin"></input></p>
+	 </h2> </div><br>
+
+	  </div>
+<div align="center" class="mydiv" id="CASH_CARD">
+<h2 align="center">Cash Card / Wallets<h2>
+<hr>
+<br>
+<br>
+<select align="center">
+																<option value="23">ITZ Cash Card</option>
+																<option value="33">I Cash Card</option>
+																<option value="55">OXI Cash Card</option>
+																<option value="63">Paytm Wallet</option>
+</select>
+</div>
+<div align="center" class="mydiv" id="IRCTC_PREPAID" >
+<h2 align="center">IRCTC Prepaid</h2>
+<hr>
+<br>
+<br>
+<select align="center">
+																<option value="59">IRCTC Union Bank prepaid (RuPay)</option>
+</select><div align="center" id="irdetail">
+<h2 align="center"><h2>
+<p style="color:black;display:none" >Card Type<br><select id="irtype" display="none" >
+      <option value="VISA">Visa</option><option value="MC">Master Card</option></select></p>
+<p style="color:black">Name on card<br><input id="irname-on-card" type="text"></input></p>
+<p style="color:black">Card No.<br><input id="irredit-card-number" type="text"></p>
+<p style="color:black">Expiry date<br>
+<select id="irexpiration-month" >
+   <option value=" ">mm</option><option value="01">01</option><option value="02">02</option><option value="03">03</option><option value="04">04</option><option value="05">05</option><option value="06">06</option><option value="07">07</option><option value="08">08</option><option value="09">09</option><option value="10">10</option><option value="11">11</option><option value="12">12</option></select>
+<select id="irexpiration-year" aria-labelledby="creditCardExpirationLabel">
+  <option value=" ">yyyy</option>    <option value="2015">2015</option><option value="2016">2016</option><option value="2017">2017</option><option value="2018">2018</option><option value="2019">2019</option><option value="2020">2020</option><option value="2021">2021</option><option value="2022">2022</option><option value="2023">2023</option><option value="2024">2024</option></select>
+</p>
+	  </div>
+</div>
+<div align="center" class="mydiv" id="EMI">
+<h2 align="center">EMI</h2>
+<hr>
+<br>
+<br>
+<select align="center">
+<option value="49">CITI Bank</option>
+</select>
+<div align="center" id="emdetail">
+<h2 align="center"><h2>
+<p style="color:black"  >Card Type<br><select id="emtype" >
+      <option value="VISA">Visa</option><option value="MC">Master Card</option></select></p>
+<p style="color:black">Name on card<br><input id="emname-on-card" type="text"></input></p>
+<p style="color:black">Card No.<br><input id="emredit-card-number" type="text"></p>
+<p style="color:black">Expiry date<br>
+<select id="emexpiration-month" >
+   <option value=" ">mm</option><option value="01">01</option><option value="02">02</option><option value="03">03</option><option value="04">04</option><option value="05">05</option><option value="06">06</option><option value="07">07</option><option value="08">08</option><option value="09">09</option><option value="10">10</option><option value="11">11</option><option value="12">12</option></select>
+<select id="emexpiration-year" aria-labelledby="creditCardExpirationLabel">
+  <option value=" ">yyyy</option>    <option value="2015">2015</option><option value="2016">2016</option><option value="2017">2017</option><option value="2018">2018</option><option value="2019">2019</option><option value="2020">2020</option><option value="2021">2021</option><option value="2022">2022</option><option value="2023">2023</option><option value="2024">2024</option></select>
+</p>
+	  </div>
+
+</div>
+<font size="3" align="center"><p style="color:black">Auto Pay <input type="checkbox" id="autopay" > </p></font>
+<br>
+<div id="add9"></div>
+<br>
+<br>
+<div id="add10"></div>
+<div align="center" >
+
+<h2 align="center">Details Saving And Booking Options</h2>
+
+<hr>
+<h2 id="share" style="color:red" align="center"></h2>
+<h2 id="nc" style="color:red" align="center"></h2>
+<input type="button"  id="mybut" value="Book Now"></input>       <input type="button" value="Save and Book later" id="anim">    <input type="button" value="Cancel" id="cancel"></button>
+<br>
+<br>
+</div>
+
+</form>
+
+</div>
+</div>
+<br>
+<br>
+</div>
+
+<hr>
+<h2 align="center">Designed By ZeroNine.in<h2>
+<h2 align="center" id="ver">Version : 1.3.6<h2>
+</body>
+</html>

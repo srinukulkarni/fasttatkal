@@ -1,0 +1,150 @@
+<!doctype html>
+<!--
+ This page is shown when the extension button is clicked, because the
+ "browser_action" field in manifest.json contains the "default_popup" key with
+ value "popup.html".
+ -->
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Fill Irctc Form</title>
+  <link rel="stylesheet" href="jcss1.css">
+  <script src="jjs.js"></script>
+  <script src="jjsn.js"></script>
+ <!-- <script src="trains.js"></script>
+  <script src="jq.js"></script>
+  <script src="crossreq.js"></script>-->
+  
+  <link rel="stylesheet" href="jcss.css">
+  <style>
+  body{
+   min-width:100px; /* suppose you want minimun width of 1000px */
+   min-hight:100px;
+   width: auto !important;  /* Firefox will set width as auto */
+   width:1020px;             /* As IE ignores !important it will set width as 1000px; */
+}
+
+.infofilldiv{
+display:none;
+}
+  .inline{
+  display:inline-block;
+  width:50%
+   
+  }
+  u{
+  color:red;}
+p.one {
+    border-style: solid;
+    border-width: 5px;
+}
+
+p.two {
+    border-style: solid;
+    border-width: medium;
+	
+	background-color:lightgrey;
+}
+
+ div.three{
+    border-style: solid;
+    border-width: 1px;
+
+	background-color:#006020;
+	
+	
+}
+
+.animaion{
+
+}
+form{
+ border-style: solid;
+    border-width: 1px;
+    
+background-color:#F8F8F8;
+border-color: white;
+}
+.zeronine{
+
+background-color: #CC9900;
+}
+
+h1{
+color:white;
+background-color:#006020;
+}
+.newh1{
+color:blue;
+}
+h2{
+color:blue;}
+.mydiv{
+display: none;
+}
+.myidiv{
+display: block;
+}
+.infodiv{
+display: none;
+}
+.newh2{
+color:black;
+}
+.mytable
+{
+border: 1px solid black;
+    border-collapse: collapse;
+	font-family: "Times New Roman", Times, serif;
+	font-size: 150%;
+}
+.mytable th{
+border: 1px solid black;
+    border-collapse: collapse;
+}
+.mytable td{
+border: 1px solid black;
+    border-collapse: collapse;
+}
+#mainblock{
+width:1020px;
+    margin: auto;
+
+}
+#stop
+{
+display:none;
+}
+#mono
+{
+display:none;
+}
+#open
+{
+display:none;
+}
+</style>
+   
+  <script src="clickopen.js"></script>
+  
+  
+</head>
+<body background="zeronine.jpg">
+
+<h2 align="center" ><font align="left" color="yellow" size="5" id="pq">ZeroNine.in</font></h2>
+<hr>
+<p ><font align="left" color="Red" id="zero" size="2">Please wait connecting to internet....</font><font align="left" color="Green" id="su" size="2"></font></p>
+  <div align="center" id="open">  <button >Open</button><br><br></div>
+  <div align="center" id="stop"><input type="button" value="Stop Booking" id="sb" ></div>
+   <div align="center" id="mono" ><font align="left" color="Red" size="2">You have to pay 3 Rs!<br> For payment <a href="#" id="cli">click here</a></font><br><br>
+<font align="left" color="White" size="2">Verify your payment for booking</font>
+<hr>
+<input type="text" id="mn" placeholder="Mobile Number"></input><br><br>
+<input type="text" id="ti" placeholder="Transaction Id"></input><br><br>
+<input type="button" id="veri" value="Verify Payment"></input></div>
+
+ 
+  </body>
+</html>
+

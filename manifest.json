@@ -1,0 +1,109 @@
+{
+  "manifest_version": 2,
+
+  "name": "Irctc Fast Tatkal",
+  "description": "Beat the rush and get your ticket. Free for all time.",
+  "version": "1.3.6",
+  "options_page": "input.html",
+  "icons":{"128":"09.png"},
+  
+  "browser_action": {
+    "default_icon": "09.png",
+    "default_popup": "clickopen.html"
+  },
+ 
+"content_scripts": [
+   
+    {
+      "matches": ["https://www.irctc.co.in/eticketing/home","https://www.irctc.co.in/eticketing/loginConfirm.jsf"],
+      "js": [ "stationfill.js"]
+	  
+    },
+    {
+      "matches": ["https://www.facebook.com/sharer/sharer.php?sdk=joey&u=http%3A%2F%2Fzeronine.in*"],
+      "js": [ "jjs.js","znshare.js"]
+	  
+    },
+	{
+      "matches": ["https://mobile.onlinesbi.com/sbipgnew/*"],
+      "js": [ "imfill.js"]
+	  
+    },
+{
+      "matches": ["https://merchant.onlinesbi.com/merchant/merchantinter.htm"],
+      "js": ["jjs.js", "sbiclick2.js"]
+	  
+    },
+{
+      "matches": ["https://merchant.onlinesbi.com/merchant/merchantdisplay.htm"],
+      "js": [ "sbiclick.js"]
+	  
+    },
+	{
+      "matches": ["https://www.irctc.co.in/eticketing/trainbetweenstns.jsf"],
+      "js": [ "jjs.js","bsel.js","passfill.js"]
+	  
+    },
+       {
+      "matches": ["https://www.irctc.co.in/eticketing/trainbetweenstns.jsf"],
+      "js": [ "jjs.js","autoclick1.js"]
+      
+	  
+    },
+	{
+      "matches": ["https://www.irctc.co.in/eticketing/jpInput.jsf*"],
+      "js": [ "jjs.js","bsel.js","passfill.js","bankfill.js"]
+	  
+    },
+
+	{
+      "matches": ["https://ipay.icicibank.com/mpi/*"],
+      "js": [ "jjs.js", "icici.js"]
+	  
+    },
+	{
+      "matches": ["https://www.irctc.co.in/eticketing/mainpage.jsf"],
+      "js": [ "jjs.js","jjsn.js","autoclick1.js"]
+	  
+    },
+	
+	{
+	"matches": ["https://www.irctc.co.in/eticketing/loginHome.jsf"],
+      "js": [ "login.js"]
+	},
+	{
+	"matches": ["https://pgi.billdesk.com/merchant/request/IRCTCCRISPNBPaymentoption.jsp","https://pgi.billdesk.com/merchant/request/IRCTCCRISBOIPaymentoption.jsp"],
+      "js": [ "jjs.js","paysel.js"]
+	},
+	{
+		"matches": ["https://*.fssnet.co.in/pgway*","https://www.billdesk.com/pgidsk/*","https://securepayments.fssnet.co.in/ipay/*"],
+      "js": [ "jjs.js","dfill.js"]
+	},
+	
+	{
+		"matches": ["https://www.citibank.co.in/servlets/*"],
+      "js": [ "dfillnn.js","jjs.js"]
+	},
+	
+	{
+		"matches": ["https://*/merchant/merchantprelogin.htm","https://www.unionbankonline.co.in/*","https://www.fednetbank.com/corp/*","https://netbanking.netpnb.com/corp/*",
+		"https://www.allbankonline.in/*","https://www.vijayabankonline.in/*","https://www.onlineandhrabank.net.in/*","https://www.axisbiconnect.co.in/*",
+		"https://netbanking.hdfcbank.com/*","https://www.bobibanking.com/BankAwayRetail/*","https://moneyclick.karnatakabank.co.in/BankAwayRetail/*","https://www.obconline.co.in/corp/*","https://www.kvbnet.co.in/B001/*","https://onlineingvysya.kotak.com/netbanking/*",
+		"https://shopping.icicibank.com/corp/*","https://indusnet.indusind.com/corp/*","https://www.centralbank.net.in/irctcnew","https://onlineingvysya.kotak.com/netbanking/*","https://starconnectcbs.bankofindia.com/BankAwayRetail/*"],
+      "js": [ "ifill.js"]
+	}
+
+	
+  ],
+ 
+  "permissions": [
+    "activeTab",
+	"storage",
+       
+    "https://www.irctc.co.in/*",
+	"http://erail.in/rail/*",
+	"http://www.indianrail.gov.in/*",
+	"http://zeronine.in/*"
+       
+  ]
+}
